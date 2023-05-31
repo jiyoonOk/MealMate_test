@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 식단 수정 페이지 -->
+<!-- 바인딩 적용 중 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="MealSetViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealSetViewModel" />
+
+        <variable
+            name="Date"
+            type="com.anonymous.mealmate.feature.Date" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_modify">
+        <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:layout_margin="20dp">-->
+        <!-- 뒤로가기 버튼 -->
+        <Button
+            android:id="@+id/btn_meal_back"
+            android:layout_width="20dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/btn_back"
+            app:layout_constraintBottom_toBottomOf="@id/tv_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_bold"
+            android:text="식단 계획/수정"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_preset"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <!--        &lt;!&ndash; 프리셋 &ndash;&gt;-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/ll_preset"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:padding="5dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/include_datetime_info">-->
+        <!-- 프리셋 -->
+        <LinearLayout
+            android:id="@+id/ll_preset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+            <!-- 프리셋 생성하기 -->
+            <Button
+                android:id="@+id/btn_preset_create"
+                android:layout_width="150dp"
+                android:layout_height="38dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/btn_preset"
+                android:text="식단 생성하기"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+            <!--            android:onClick ="@{() -> MealSetViewModel.onCreatePreset()"-->
+
+            <!-- 프리셋 불러오기 -->
+            <Button
+                android:id="@+id/btn_preset_bring"
+                android:layout_width="150dp"
+                android:layout_height="38dp"
+                android:layout_marginHorizontal="15dp"
+                android:background="@drawable/btn_preset"
+                android:text="식단 불러오기"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+            <!--            android:onClick="@{() -> MealSetViewModel.onLoadPreset()"-->
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/include_datetime_info"
+            layout="@layout/include_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:Date="@{Date}"
+            app:layout_constraintBottom_toTopOf="@id/rv_meal_setting"
+            app:layout_constraintLeft_toLeftOf="@id/rv_meal_setting"
+            app:layout_constraintTop_toBottomOf="@id/ll_preset" />
+
+
+        <!-- 끼니 List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_meal_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/include_datetime_info"
+            tools:itemCount="2"
+            tools:layout_editor_absoluteX="25dp"
+            tools:listitem="@layout/adapter_mealitem" />
+        <!-- 끼니 추가하기 -->
+        <Button
+            android:id="@+id/btn_meal_add"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_meal_add"
+            android:fontFamily="@font/notosans_medium"
+            android:onClick="@{() -> MealSetViewModel.onAddMealTime()}"
+            android:text="끼니 추가"
+            android:textColor="@color/white"
+            android:textSize="40px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_meal_setting" />
+
+        <!-- 저장 버튼 -->
+        <Button
+            android:id="@+id/btn_meal_save"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_food_search"
+            android:fontFamily="@font/notosans_bold"
+            android:text="저장"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:onClick ="@{() -> MealSetViewModel.testNotifyData()}"
+            app:layout_constraintBottom_toTopOf="@+id/rv_meal_setting"
+            app:layout_constraintEnd_toEndOf="@+id/rv_meal_setting"
+            app:layout_constraintLeft_toRightOf="@id/include_datetime_info"
+            app:layout_constraintRight_toRightOf="parent" />
+        <!-- 끼니 추가하기 -->
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_meal_add"-->
+        <!--            android:layout_width="260dp"-->
+        <!--            android:layout_height="45dp"-->
+        <!--            android:layout_margin="10dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="@drawable/btn_meal_add"-->
+        <!--            android:onClick="@{() -> MealSetViewModel.onAddMealTime()}"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/rv_meal_setting" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

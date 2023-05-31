@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 음식화면 -->
+<!--
+    바인딩 처리 진행상황 : 필수기능 완성
+
+    모두, 좋아요 구분 처리 외 진행완료
+-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="FoodViewModel"
+            type="com.anonymous.mealmate.viewmodel.FoodViewModel" />
+
+
+        <variable
+            name="inputFoodName"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_modify">
+
+        <TextView
+            android:id="@+id/style_logo"
+            android:layout_width="149dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kaushanscript_regular"
+            android:text="meal mate"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 검색창 -->
+        <EditText
+            android:id="@+id/et_food_search"
+            android:hint="음식명"
+            android:background="@drawable/style_box_90"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:paddingHorizontal="25dp"
+            android:text="@={inputFoodName}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_food_search"
+            app:layout_constraintTop_toBottomOf="@id/style_logo" />
+        <!--
+        @={}사용하여 양방향 바인딩 처리, 실시간으로 주고받을수있음
+        매우 중요 ****
+        -->
+
+        <!-- 검색버튼 -->
+        <Button
+            android:id="@+id/btn_food_search"
+            android:text="검색"
+            android:fontFamily="@font/notosans_family"
+            android:background="@drawable/btn_food_search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="15dp"
+            android:onClick="@{(view) -> FoodViewModel.onSearchFood(view,inputFoodName)}"
+            app:layout_constraintBottom_toBottomOf="@id/et_food_search"
+            app:layout_constraintLeft_toRightOf="@+id/et_food_search"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/et_food_search" />
+        <!-- 여기까지  id 기록 추가 요망 추가시 comment 달아주세여-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_food_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="26dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_food_search">
+
+            <!-- 모두 -->
+            <Button
+                android:id="@+id/btn_food_category_all"
+                android:text="모두"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/notosans_bold"
+                android:background="@drawable/btn_food_category_selected"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_food_category_like"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <!-- 좋아요 -->
+            <Button
+                android:id="@+id/btn_food_category_like"
+                android:text="좋아요"
+                android:textSize="45px"
+                android:textColor="@color/white"
+                android:fontFamily="@font/notosans_bold"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="10dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/btn_food_category"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/btn_food_category_all"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_food_search"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_food_category"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
+            tools:itemCount="3"
+            tools:listitem="@layout/adapter_food" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 캘린더화면 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="MealCheckViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealCheckViewModel" />
+
+        <variable
+            name="Date"
+            type="com.anonymous.mealmate.feature.Date" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/trans">
+
+            <!-- 로고 -->
+            <TextView
+                android:id="@+id/style_logo"
+                android:layout_width="149dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/kaushanscript_regular"
+                android:text="meal mate"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:onClick="@{(view) -> MealCheckViewModel.onLoadMeal(view)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CalendarView
+                android:id="@+id/cv_meal_info"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:background="@drawable/style_box_70"
+                android:focusedMonthDateColor="@color/pink"
+                android:onDateChangeListener = "@{(view,year,month,dayOfMonth) ->MealCheckViewModel.onDateSelected(view, year,month,dayOfMonth)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/style_logo" />
+            <!--        android:onDateChanged="@{(view,year,month,dayOfMonth) -> MealCheckViewModel.onSelectedDayChange(view,year,month,dayOfMonth)}"-->
+
+
+            <include
+                android:id="@+id/include_meal_list"
+                layout="@layout/include_meallist"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:Date="@{Date}"
+                app:MealCheckViewModel="@{MealCheckViewModel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_meal_info" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

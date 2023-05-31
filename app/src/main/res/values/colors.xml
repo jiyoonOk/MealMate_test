@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="mainColor">#8176FF</color>
+    <color name="pointColor">#4ECB71</color>
+
+<!--    5.28 18h added-->
+    <color name="blue_dark">#FF75CEF6</color>
+    <color name="pink_dark">#FFEB2364</color>
+    <color name="green_dark">#FF338C82</color>
+    <color name="yellow_dark">#FFFEE74A</color>
+
+    <color name="blue">#FFA5DFF9</color>
+    <color name="pink">#FFEB2364</color>
+    <color name="green">#FF41B1A5</color>
+    <color name="yellow">#FFFEEE7D</color>
+
+    <color name="blue_light">#FFA5DFF9</color>
+    <color name="pink_light">#FFF590B1</color>
+    <color name="green_light">#FF85D3CA</color>
+    <color name="yellow_light">#FFFEF5B0</color>
+
+    <color name="blue_70">#B3A5DFF9</color>
+    <color name="pink_70">#B3EF5285</color>
+    <color name="green_70">#B341B1A5</color>
+    <color name="yellow_70">#B3F9C74B</color>
+
+    <color name="green_50">#8041B1A5</color>
+
+    <color name="black_30">#4D000000</color>
+    <color name="white_90">#E6FFFFFF</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
+    <color name="white_15">#26FFFFFF</color>
+    <color name="trans">#00FFFFFF</color> <!-- 투명 -->
+
+    <color name="text">#FF3D3D3D</color>
+<!--    /5.28-->
+</resources>

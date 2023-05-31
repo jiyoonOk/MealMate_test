@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_navigation_home"
+        android:icon="@drawable/btn_menu_home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/item_navigation_calendar"
+        android:icon="@drawable/btn_menu_calendar"
+        android:title="Calendar"/>
+    <item
+        android:id="@+id/item_navigation_food"
+        android:icon="@drawable/btn_menu_food"
+        android:title="Food"/>
+    <item
+        android:id="@+id/item_navigation_user"
+        android:icon="@drawable/btn_menu_user"
+        android:title="User"/>
+</menu>

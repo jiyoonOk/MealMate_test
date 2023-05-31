@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 식단 속 음식 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- binding 생성하여 setFood(), setMealSetViewModel() 해줘야함 -->
+        <variable
+            name="Food"
+            type="com.anonymous.mealmate.model.entity.Food" />
+
+        <variable
+            name="Meal"
+            type="com.anonymous.mealmate.model.entity.Meal" />
+
+        <variable
+            name="MealSetViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealSetViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/tv_meal_subItem_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_medium"
+            android:text="@{Food.foodName}"
+            android:hint="음식명"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_meal_subItem_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="@font/notosans_medium"
+            android:text="000g"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_meal_subItem_delete"
+            app:layout_constraintStart_toEndOf="@id/tv_meal_subItem_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 음식 삭제하기 -->
+        <Button
+            android:id="@+id/btn_meal_subItem_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_delete"
+            android:onClick="@{() -> MealSetViewModel.onDeleteFood(Meal,Food)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_meal_subItem_amount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

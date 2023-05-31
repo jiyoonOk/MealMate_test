@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 홈/캘린더 식단 list -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="MealCheckViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealCheckViewModel" />
+        <variable
+            name="Date"
+            type="com.anonymous.mealmate.feature.Date" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <include
+            android:id="@+id/include_datetime_info"
+            layout="@layout/include_datetime"
+            app:Date="@{Date}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_meal_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/include_datetime_info"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/adapter_meal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

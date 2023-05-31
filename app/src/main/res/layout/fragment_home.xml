@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 홈화면 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="MealCheckViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealCheckViewModel" />
+
+        <variable
+            name="Date"
+            type="com.anonymous.mealmate.feature.Date" />
+
+        <variable
+            name="User"
+            type="com.anonymous.mealmate.model.entity.User" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/trans">
+            <!-- 배경색 @color/trans 변경 필요 -->
+
+            <!-- 로고 -->
+            <TextView
+                android:id="@+id/style_logo"
+                android:layout_width="149dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/kaushanscript_regular"
+                android:text="meal mate"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:onClick="@{(view) -> MealCheckViewModel.onLoadMeal(view)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!-- 목적 동그라미 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_user_purpose"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="228dp"
+                android:background="@drawable/style_round_70"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <!-- 목적 동그라미 속 내용 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@{``+User.name}"
+                        tools:text="이름"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@id/tv_user_purpose"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tv_user_purpose_text"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_user_purpose_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="님은"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_user_purpose"
+                        app:layout_constraintLeft_toRightOf="@id/tv_user_name"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_user_name" />
+
+                    <!-- 사용자 목적 -->
+                    <!-- android:text="@{User.state}" 필요함-->
+                    <TextView
+                        android:id="@+id/tv_user_purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/pink"
+                        android:textSize="25dp"
+                        android:text="@{User.purposeToString+` 중!!`}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_user_name"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+                        tools:text="벌크업 중!" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 차트 동그라미 -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_meal_chart"
+                android:layout_width="290dp"
+                android:layout_height="290dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/style_round_70"
+                app:layout_constraintBottom_toTopOf="@id/include_meal_list"
+                app:layout_constraintLeft_toRightOf="@id/cl_user_purpose"
+                app:layout_constraintTop_toTopOf="@+id/cl_user_purpose"
+                app:layout_constraintVertical_bias="0.0">
+
+                <ImageView
+                    android:layout_width="145dp"
+                    android:layout_height="167dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@drawable/style_chart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.504" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 몸무게 동그라미 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_user_weight"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/style_round_70"
+                app:layout_constraintBottom_toTopOf="@id/include_meal_list"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/cl_meal_chart"
+                app:layout_constraintTop_toBottomOf="@+id/cl_user_purpose">
+
+                <!-- 몸무게 동그라미 속 내용 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_user_weight_text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="현재 / 목표"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toTopOf="@id/tv_user_weight_text2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_user_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kaushanscript_regular"
+                        android:paddingHorizontal="8dp"
+                        android:text="@{``+User.weight}"
+                        tools:text="00"
+                        android:textColor="@color/pink"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tv_user_weight_text2"
+                        app:layout_constraintTop_toBottomOf="@id/tv_user_weight_text1" />
+
+                    <TextView
+                        android:id="@+id/tv_user_weight_text2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kaushanscript_regular"
+                        android:paddingHorizontal="6dp"
+                        android:text="/"
+                        android:textColor="@color/pink"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_user_weight"
+                        app:layout_constraintRight_toLeftOf="@id/tv_purpose_weight"
+                        app:layout_constraintTop_toBottomOf="@id/tv_user_weight_text1" />
+
+                    <TextView
+                        android:id="@+id/tv_purpose_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kaushanscript_regular"
+                        android:paddingHorizontal="6dp"
+                        android:text="@{``+User.targetWeight}"
+                        tools:text="00"
+                        android:textColor="@color/pink"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_user_weight_text2"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_user_weight_text1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- 오늘 식단 -->
+            <include
+                android:id="@+id/include_meal_list"
+                layout="@layout/include_meallist"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:Date="@{Date}"
+                app:MealCheckViewModel="@{MealCheckViewModel}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_user_weight" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
+
+
+

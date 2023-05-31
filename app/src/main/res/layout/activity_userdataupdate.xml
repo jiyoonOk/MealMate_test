@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="User"
+            type="com.anonymous.mealmate.model.entity.User" />
+        <variable
+            name="UserViewModel"
+            type="com.anonymous.mealmate.viewmodel.UserViewModel"/>
+    </data>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_survey"
+        tools:context=".view.activity.UserDataUpdateActivity">
+        <TextView
+            android:id="@+id/style_logo"
+            android:layout_width="149dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kaushanscript_regular"
+            android:text="meal mate"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="53dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/btn_back_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ViewFlipper
+            android:id="@+id/vf_survey"
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 첫번째 :키, 몸무게 -->
+            <!-- 두번째 :성별 -->
+            <!-- 세번째 :활동량 -->
+            <!-- 네번째 :사용자 이름 -->
+            <!-- 다섯번째 : 사용자 목적 -->
+            <!-- 여섯번째 : 시작 -->
+
+            <include
+                android:id="@+id/include_survey1"
+                layout="@layout/include_survey1"
+                app:User="@={User}"
+                />
+
+            <include
+                android:id="@+id/include_survey2"
+                layout="@layout/include_survey2"
+                app:User="@={User}"
+                />
+
+            <include
+                android:id="@+id/include_survey3"
+                layout="@layout/include_survey3"
+                app:User="@={User}"
+                />
+
+            <include
+                android:id="@+id/include_survey4"
+                layout="@layout/include_survey4"
+                app:User="@={User}"
+               />
+
+            <include
+                android:id="@+id/include_survey5"
+                layout="@layout/include_survey5"
+                app:User="@={User}"
+                />
+
+            <include
+                android:id="@+id/include_survey6"
+                layout="@layout/include_survey6"
+                app:User="@={User}"
+                app:UserViewModel="@{UserViewModel}"
+                />
+        </ViewFlipper>
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="90dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/btn_move"
+            android:text="다음"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/vf_survey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

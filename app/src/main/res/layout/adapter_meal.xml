@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 음식 체크박스 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="MealCheckViewModel"
+            type="com.anonymous.mealmate.viewmodel.MealCheckViewModel" />
+        <!--        <variable-->
+        <!--            name="Foods"-->
+        <!--            type="com.anonymous.mealmate.model.entity.Foods" />-->
+        <variable
+            name="Meal"
+            type="com.anonymous.mealmate.model.entity.Meal" />
+        <!--        type="List<Meal>"  xx 아래방식으로 사용-->
+        <!--        type="java.util.List&lt;com.anonymous.mealmate.model.entity.Meal&gt;"-->
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/trans">
+
+        <!-- 체크박스 -->
+        <Button
+            android:id="@+id/btn_meal_check"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+
+            android:background="@{Meal.checked==0 ? @drawable/btn_check_before : @drawable/btn_check_after}"
+            android:onClick="@{() -> MealCheckViewModel.onMealChecked(Meal)}"
+            app:layout_constraintRight_toLeftOf="@id/cl_meal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--    android:background="@drawable/btn_checkbox"-->
+        <!--        android:onClick="@{ViewModel_CheckMeal::onChecked}"-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_meal"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/style_box_70"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btn_meal_check"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 식단정보 : 몇끼인지 -->
+            <TextView
+                android:id="@+id/tv_meal_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/notosans_medium"
+                android:includeFontPadding="false"
+                android:text="@{``+Meal.mealDate}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@id/ll_meal_menu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_meal_info_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_meal_info_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/notosans_medium"
+                android:includeFontPadding="false"
+                android:text="번째 끼니"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@id/ll_meal_menu"
+                app:layout_constraintLeft_toRightOf="@id/tv_meal_info"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--음식 추가되는 만큼 늘어나는거라 textView로 정할 수 없음-->
+            <TextView
+                android:id="@+id/ll_meal_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:text="@{Meal.foodList.toStringList()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/tv_meal_info" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+<!--    <?xml version="1.0" encoding="utf-8"?>&lt;!&ndash; 음식 체크박스 &ndash;&gt;-->
+    <!--
+        음식 체크박스
+        data,method binding complete 50%
+        바인딩 적용중
+    -->
+    <!--<layout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools" >-->
+
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:layout_marginBottom="10dp"-->
+    <!--    android:background="@color/trans">-->
+
+    <!--    &lt;!&ndash; 체크박스 &ndash;&gt;-->
+    <!--    <Button-->
+    <!--        android:id="@+id/btn_meal_check"-->
+    <!--        android:layout_width="30dp"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:layout_marginTop="5dp"-->
+
+
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintRight_toLeftOf="@id/btn_meal_check"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    &lt;!&ndash;        android:onClick="@{ViewModel_CheckMeal::onChecked}"&ndash;&gt;-->
+
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/cl_meal"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="50dp"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:background="@drawable/style_box_70"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/btn_meal_check"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        &lt;!&ndash; 식단정보 : 몇끼인지 &ndash;&gt;-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_meal_info"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginLeft="10dp"-->
+    <!--            android:layout_marginTop="6dp"-->
+    <!--            android:fontFamily="@font/notosans_medium"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="@{``+Meal.mealCnt}"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="20dp"-->
+    <!--            tools:text="0"-->
+    <!--            app:layout_constraintBottom_toTopOf="@id/tv_meal_menu"-->
+    <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--            app:layout_constraintRight_toLeftOf="@id/tv_meal_info_text"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_meal_info_text"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginLeft="2dp"-->
+    <!--            android:layout_marginTop="6dp"-->
+    <!--            android:fontFamily="@font/notosans_medium"-->
+    <!--            android:includeFontPadding="false"-->
+    <!--            android:text="끼"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="20dp"-->
+    <!--            app:layout_constraintBottom_toTopOf="@id/tv_meal_menu"-->
+    <!--            app:layout_constraintLeft_toRightOf="@id/tv_meal_info"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--        &lt;!&ndash;음식 추가되는 만큼 늘어나는거라 textView로 정할 수 없음&ndash;&gt;-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_meal_menu"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:padding="10dp"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintLeft_toLeftOf="@id/tv_meal_info"-->
+    <!--            tools:text="1. 음식 \n 2. 음식\n 3. 음식">-->
+    <!--        </TextView>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--</layout>-->
+
+
